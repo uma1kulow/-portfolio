@@ -18,7 +18,7 @@ const Footer = () => {
             © {currentYear} {portfolio.name}. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Built with React, TypeScript & ❤️
+            Built with React, TypeScript & <span>❤️</span>
           </p>
         </motion.div>
       </div>
