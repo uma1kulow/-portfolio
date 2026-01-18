@@ -51,8 +51,8 @@ const initialState: PortfolioState = {
   title: 'Frontend Developer',
   subtitle: 'Web & Digital Specialist',
   bio: 'Специалист по веб-разработке с опытом создания современных сайтов и веб-приложений. Уверенно работаю с адаптивной вёрсткой, JavaScript и React, интеграцией API и UI-дизайном. Ответственный, быстро обучаюсь, умею работать по техническому заданию и в команде.',
-  email: 'ilyaz@example.com',
-  phone: '+996 XXX XXX XXX',
+  email: 'uma1kulovml8@gmail.com',
+  phone: '+996 509 323 259',
   location: 'Kyrgyzstan',
   education: {
     institution: 'Okurmen IT',
@@ -99,10 +99,9 @@ const initialState: PortfolioState = {
     },
   ],
   socialLinks: [
-    { id: '1', platform: 'GitHub', url: 'https://github.com', icon: 'github' },
-    { id: '2', platform: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
-    { id: '3', platform: 'Telegram', url: 'https://t.me', icon: 'telegram' },
-    { id: '4', platform: 'Instagram', url: 'https://instagram.com', icon: 'instagram' },
+    { id: '1', platform: 'GitHub', url: 'https://github.com/uma1kulow', icon: 'github' },
+    { id: '3', platform: 'Telegram', url: 'https://t.me/uma1kulov', icon: 'telegram' },
+    { id: '4', platform: 'Instagram', url: 'https://www.instagram.com/uma1kulov_?igsh=aGVhMDd6dGNrYzE0&utm_source=qr', icon: 'instagram' },
   ],
   languages: [
     { name: 'English', level: 'Intermediate' },

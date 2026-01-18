@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '@/hooks/usePortfolio';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,7 +14,10 @@ import {
   Save,
   X,
   Folder,
-  LogOut
+  LogOut,
+  Cloud,
+  CloudOff,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,11 +25,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
+import { isFirebaseConfigured } from '@/lib/firebase';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const AdminPanel = () => {
   const { portfolio, actions } = usePortfolio();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('profile');
+  const [firebaseStatus, setFirebaseStatus] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setFirebaseStatus(isFirebaseConfigured());
+  }, []);
 
   // Profile state
   const [profile, setProfile] = useState({
@@ -183,6 +193,35 @@ const AdminPanel = () => {
 
       {/* Main Content */}
       <main className="container mx-auto py-8 px-4">
+        {/* Firebase Status Alert */}
+        {firebaseStatus === false && (
+          <Alert className="mb-6 border-yellow-500 bg-yellow-500/10">
+            <AlertCircle className="h-4 w-4 text-yellow-600" />
+            <AlertTitle className="text-yellow-800">Firebase орнотулган жок</AlertTitle>
+            <AlertDescription className="text-yellow-700">
+              <p className="mb-2">
+                Азыр маалыматтар localStorage'га сакталат (бир браузерге гана иштейт). 
+                Бардык куралдарда синхрондаштыруу үчүн Firebase орнотуңуз.
+              </p>
+              <p className="text-sm mt-2">
+                <strong>Кантип орнотуу:</strong> <code className="bg-yellow-100 px-2 py-1 rounded">ilyaz-s-portfolio-showcase</code> папкасында 
+                <code className="bg-yellow-100 px-2 py-1 rounded">.env</code> файл түзүп, Firebase конфигурация маалыматтарын киргизиңиз. 
+                README.md файлда толук инструкциялар бар.
+              </p>
+            </AlertDescription>
+          </Alert>
+        )}
+        
+        {firebaseStatus === true && (
+          <Alert className="mb-6 border-green-500 bg-green-500/10">
+            <Cloud className="h-4 w-4 text-green-600" />
+            <AlertTitle className="text-green-800">Firebase иштейт ✓</AlertTitle>
+            <AlertDescription className="text-green-700">
+              Маалыматтар cloud'да сакталып, бардык куралдарда синхрондашат.
+            </AlertDescription>
+          </Alert>
+        )}
+
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid grid-cols-3 md:grid-cols-6 w-full mb-8">
             <TabsTrigger value="profile" className="gap-2">
